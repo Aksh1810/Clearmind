@@ -66,7 +66,7 @@ ClearMind is a daily journaling web app that helps you process your thoughts and
 
 | Layer | Technology |
 |---|---|
-| Frontend | React (Vite) |
+| Frontend | Vanilla HTML, CSS, JavaScript |
 | Voice-to-Text | Web Speech API (built into browser) |
 | Reflection Engine | Local keyword-based mood detection + curated responses |
 | Storage | localStorage |
@@ -86,7 +86,7 @@ cd Clearmind
 npm install
 
 # Run locally
-npm run dev
+Simply open `index.html` in your browser!
 ```
 
 That's it — no `.env`, no API key, no configuration needed.
@@ -97,13 +97,9 @@ That's it — no `.env`, no API key, no configuration needed.
 
 ```
 clearmind/
-├── src/
-│   ├── App.jsx       ← Entire app (single component)
-│   ├── main.jsx      ← Vite entry point
-│   └── index.css     ← Full design system
-├── index.html        ← Google Fonts + meta tags
-├── package.json
-└── vite.config.js
+├── index.html        ← Structure & Views
+├── style.css         ← Full design system
+└── app.js            ← Reflection Engine & LocalStorage logic
 ```
 
 ---

@@ -12,11 +12,149 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+  <div class="app-layout">
+    <!-- ---- Sidebar ---- -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-leaf">🌿</span>
+        ClearMind
+      </div>
+
+      <div class="streak-card">
+        <div class="streak-label">Day Streak</div>
+        <div class="streak-count" id="streak-count">
+          0<span>entries</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" id="nav-write" onclick="goToWrite()">
+          <span class="nav-icon">✏️</span>
+          Today's Entry
+        </button>
+        <button class="nav-btn" id="nav-history" onclick="goToHistory()">
+          <span class="nav-icon">📖</span>
+          Past Entries
+        </button>
+      </nav>
+
+      <div class="sidebar-moods hidden" id="recent-moods-container">
+        <div class="moods-label">Recent Moods</div>
+        <div class="moods-row" id="recent-moods">
+          <!-- Recent moods dynamically added here -->
+        </div>
+      </div>
+
+      <div class="mood-legend">
+        <div class="moods-label">Mood Map</div>
+        <div class="mood-legend-list">
+          <div class="mood-legend-item"><span>🌤</span><span>Joyful</span></div>
+          <div class="mood-legend-item"><span>🌀</span><span>Anxious</span></div>
+          <div class="mood-legend-item"><span>🌧</span><span>Low</span></div>
+          <div class="mood-legend-item"><span>🌸</span><span>Grateful</span></div>
+          <div class="mood-legend-item"><span>🍃</span><span>Calm</span></div>
+          <div class="mood-legend-item"><span>⚡</span><span>Stressed</span></div>
+          <div class="mood-legend-item"><span>✨</span><span>Excited</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ---- Main Content ---- -->
+    <main class="main-content">
+
+      <!-- ======== WRITE VIEW ======== -->
+      <section id="view-write" class="view-section">
+        <div class="date-header" id="current-date-full">Loading Date...</div>
+        <h1 class="page-title">How are you, really?</h1>
+        <p class="page-subtitle">
+          Write or speak freely. Your companion will reflect it back.
+        </p>
+
+        <div class="paper-card">
+          <div class="error-message hidden" id="error-message"></div>
+
+          <textarea id="journal-textarea" class="journal-textarea" placeholder="Start writing or press 🎙 to speak…"
+            oninput="handleTextInput(this)"></textarea>
+
+          <div class="textarea-bottom-bar">
+            <span class="char-count" id="char-count">0 chars</span>
+
+            <div class="bottom-bar-actions">
+              <button class="voice-btn" id="voice-btn" onclick="toggleListening()" title="Start voice input">
+                🎙 Speak
+              </button>
+
+              <button class="submit-btn" id="submit-btn" onclick="handleSubmit()" disabled>
+                Get Reflection →
+              </button>
+            </div>
+          </div>
+
+          <div class="loading-dots hidden" id="loading-dots">
+            <span></span><span></span><span></span>
+          </div>
+
+          <p class="voice-note">
+            🎙 Voice works best in Chrome.
+          </p>
+        </div>
+      </section>
+
+      <!-- ======== REFLECTION VIEW ======== -->
+      <section id="view-reflection" class="view-section hidden">
+        <div class="date-header" id="reflection-date">Loading...</div>
+        <h1 class="page-title">Your Reflection</h1>
+        <p class="page-subtitle">
+          Here's what your words are telling you.
+        </p>
+
+        <div class="paper-card reflection-card">
+          <div class="mood-badge" id="reflection-mood-badge">
+            🍃 Calm
+          </div>
+
+          <blockquote class="pull-quote" id="reflection-pull-quote">
+            "Loading quote..."
+          </blockquote>
+
+          <p class="reflection-text" id="reflection-text">Loading reflection...</p>
+
+          <div class="tip-box">
+            <div class="tip-label">🌱 Tomorrow's nudge</div>
+            <p class="tip-text" id="reflection-tip">Loading tip...</p>
+          </div>
+
+          <button class="back-btn" onclick="goToWrite()">
+            ← Write another entry
+          </button>
+        </div>
+      </section>
+
+      <!-- ======== HISTORY VIEW ======== -->
+      <section id="view-history" class="view-section hidden">
+        <h1 class="page-title">Past Entries</h1>
+        <p class="page-subtitle" id="history-subtitle">
+          0 entries so far — keep going.
+        </p>
+
+        <div class="empty-state" id="history-empty">
+          <div class="empty-icon">📝</div>
+          <p>No entries yet. Write your first one today.</p>
+        </div>
+
+        <div class="history-list" id="history-list">
+          <!-- History cards dynamically populated here -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 
 </html>

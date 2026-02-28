@@ -15,6 +15,11 @@
   padding: 0;
 }
 
+/* Utilities */
+.hidden {
+  display: none !important;
+}
+
 :root {
   /* Colors */
   --bg-gradient: linear-gradient(160deg, #F5EDD8, #EDE0C4, #E8D5B0);
